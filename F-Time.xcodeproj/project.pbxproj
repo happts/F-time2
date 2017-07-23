@@ -10,13 +10,14 @@
 		DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6641F234CD100A07F44 /* AppDelegate.swift */; };
 		DD70E66A1F234CD100A07F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD70E6681F234CD100A07F44 /* Main.storyboard */; };
 		DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */; };
-		DD70E66F1F234CD100A07F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD70E66E1F234CD100A07F44 /* Assets.xcassets */; };
 		DD70E6721F234CD100A07F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */; };
 		DD70E67A1F234DE300A07F44 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6791F234DE300A07F44 /* FirstViewController.swift */; };
 		DD70E67C1F234E1200A07F44 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E67B1F234E1200A07F44 /* SecondViewController.swift */; };
 		DD70E67E1F234E2800A07F44 /* ThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */; };
 		DD70E6801F234E3400A07F44 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */; };
 		DD70E6821F234E4800A07F44 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */; };
+		DDB7244F1F2431EF00585570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB7244E1F2431EF00585570 /* Assets.xcassets */; };
+		DDB724551F247ED000585570 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB724541F247ED000585570 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +25,6 @@
 		DD70E6641F234CD100A07F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD70E6691F234CD100A07F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD70E66C1F234CD100A07F44 /* F_Time.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = F_Time.xcdatamodel; sourceTree = "<group>"; };
-		DD70E66E1F234CD100A07F44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD70E6711F234CD100A07F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD70E6731F234CD100A07F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD70E6791F234DE300A07F44 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +32,8 @@
 		DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTableViewController.swift; sourceTree = "<group>"; };
 		DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
 		DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		DDB7244E1F2431EF00585570 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DDB724541F247ED000585570 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +68,13 @@
 			children = (
 				DD70E6641F234CD100A07F44 /* AppDelegate.swift */,
 				DD70E6681F234CD100A07F44 /* Main.storyboard */,
+				DDB7244E1F2431EF00585570 /* Assets.xcassets */,
 				DD70E6791F234DE300A07F44 /* FirstViewController.swift */,
 				DD70E67B1F234E1200A07F44 /* SecondViewController.swift */,
+				DDB724541F247ED000585570 /* TabBarController.swift */,
 				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
 				DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */,
-				DD70E66E1F234CD100A07F44 /* Assets.xcassets */,
 				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6731F234CD100A07F44 /* Info.plist */,
 				DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */,
@@ -139,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD70E6721F234CD100A07F44 /* LaunchScreen.storyboard in Resources */,
-				DD70E66F1F234CD100A07F44 /* Assets.xcassets in Resources */,
+				DDB7244F1F2431EF00585570 /* Assets.xcassets in Resources */,
 				DD70E66A1F234CD100A07F44 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD70E67C1F234E1200A07F44 /* SecondViewController.swift in Sources */,
+				DDB724551F247ED000585570 /* TabBarController.swift in Sources */,
 				DD70E6821F234E4800A07F44 /* MenuTableViewController.swift in Sources */,
 				DD70E67A1F234DE300A07F44 /* FirstViewController.swift in Sources */,
 				DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */,
@@ -317,6 +321,7 @@
 				DD70E6781F234CD100A07F44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

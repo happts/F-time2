@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 143/255, green: 195/255, blue: 186/255, alpha: 1)
+        UITabBar.appearance().barTintColor = UIColor(red: 212/255, green: 203/255, blue: 198/255, alpha: 1)
+        UITabBar.appearance().selectionIndicatorImage = #imageLiteral(resourceName: "select60")
+        
         return true
     }
 
