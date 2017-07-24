@@ -9,6 +9,8 @@
 import UIKit
 
 class AddTableViewController: UITableViewController {
+    @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
 
     override func viewDidLoad() {
         super.viewDidLoad()
