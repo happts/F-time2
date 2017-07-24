@@ -34,6 +34,7 @@
 		DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		DDB7244E1F2431EF00585570 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDB724541F247ED000585570 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DDBD8A031F259674005A55BA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 				DDB724541F247ED000585570 /* TabBarController.swift */,
 				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
+				DDBD8A031F259674005A55BA /* MyPlayground.playground */,
 				DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */,
 				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6731F234CD100A07F44 /* Info.plist */,
