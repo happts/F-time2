@@ -10,13 +10,6 @@ import UIKit
 
 class AddTableViewController: UITableViewController {
 
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var thingText: UITextField!
-    @IBOutlet weak var remarkText: UITextField!
-    @IBAction func locationButton(_ sender: UIButton) {
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +34,7 @@ class AddTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return 7
     }
 
     /*
