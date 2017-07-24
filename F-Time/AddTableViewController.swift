@@ -15,6 +15,7 @@ class AddTableViewController: UITableViewController {
     @IBOutlet weak var thingText: UITextField!
     @IBOutlet weak var remarkText: UITextField!
     @IBAction func locationButton(_ sender: UIButton) {
+        
     }
     
     override func viewDidLoad() {
