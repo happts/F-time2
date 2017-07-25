@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class AddTableViewController: UITableViewController {
     
     var thing:Things!
     var pickerDT = false
-    
+    var startDateStr:String!
+    var endDateStr:String!
+    var dailyOrNot = false
     
     @IBOutlet weak var startWeek: UILabel!
     @IBOutlet weak var StartDate: UILabel!
@@ -23,16 +26,36 @@ class AddTableViewController: UITableViewController {
     @IBOutlet weak var endWeek: UILabel!
     @IBOutlet weak var endDate: UILabel!
     
+    @IBOutlet weak var dailyButton1: UIButton!
+    @IBOutlet weak var thingButton0: UIButton!
     @IBAction func thingButtonTap(_ sender: UIButton) {
-        
+        dailyOrNot = false
+        dailyButton1.backgroundColor = UIColor.clear
     }
     @IBAction func dailyButtonTap(_ sender: UIButton) {
-        
+        dailyOrNot = true
+        thingButton0.backgroundColor = UIColor.clear
     }
     
+    @IBAction func saveTap(_ sender: UIBarButtonItem) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate //获取本 AppDelegate
+        thing = Things(context: appDelegate.persistentContainer.viewContext)
+        
+        thing.name = thingNameText.text
+        thing.startTime = startDateStr
+        thing.endTime = endDateStr
+        thing.priority = dailyOrNot
+        appDelegate.saveContext()
+        performSegue(withIdentifier: "unwindToFirst", sender: self)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        startDateStr = dateStringTranser(date: Date())
+        endDateStr = startDateStr
+        StartDate.text = startDateStr
+        endDate.text = startDateStr
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,7 +71,7 @@ class AddTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var timeAnddate = "1"
+        //时间选择器-完成( UI 可简化)
         if indexPath.row <= 1{
             
             let actionSheet = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n", message:  nil, preferredStyle:.actionSheet)
@@ -56,7 +79,7 @@ class AddTableViewController: UITableViewController {
             let option4 = UIDatePicker()
             option4.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
             option4.datePickerMode = (pickerDT) ? UIDatePickerMode.time : UIDatePickerMode.date
-            option4.date = Date()
+            option4.date = indexPath.row==0 ? StringDateTransfer(dateStr: startDateStr) : StringDateTransfer(dateStr: endDateStr)
             
             var title: String
             if pickerDT {
@@ -68,18 +91,25 @@ class AddTableViewController: UITableViewController {
             let option5 = UIAlertAction(title: title, style: .default, handler: { (_) in
                 self.pickerDT = !self.pickerDT
                 
-//                let dFormatter = DateFormatter()
-//                dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
-                timeAnddate = self.dateStringTranser(date: option4.date)
-                print(timeAnddate)
+                if indexPath.row == 0{
+                    self.startDateStr = self.dateStringTranser(date: option4.date)
+                    self.StartDate.text = self.startDateStr
+                }
+                else if indexPath.row == 1{
+                    self.endDateStr = self.dateStringTranser(date: option4.date)
+                    self.endDate.text = self.endDateStr
+                }
+                
+                print(self.startDateStr ,"\n", self.endDateStr)
+                
             })
             actionSheet.view.addSubview(option4)
             actionSheet.addAction(option5)
             
             self.present(actionSheet, animated: true, completion: nil)
-            
-
+        
         }
+        
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -143,6 +173,12 @@ class AddTableViewController: UITableViewController {
         let dFormatter = DateFormatter()
         dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
         return dFormatter.string(from: date)
+    }
+    
+    func StringDateTransfer(dateStr:String) -> Date {
+        let dFormatter = DateFormatter()
+        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
+        return dFormatter.date(from: dateStr)!
     }
 
 }

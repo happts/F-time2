@@ -379,18 +379,24 @@
                     <navigationItem key="navigationItem" id="T4i-LB-CIC">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="oGV-nU-aR6">
                             <connections>
-                                <segue destination="Uoc-CQ-bOx" kind="unwind" unwindAction="addUnwindToFirstWithSegue:" id="A1i-co-k4J"/>
+                                <segue destination="Uoc-CQ-bOx" kind="unwind" identifier="unwindToFirst" unwindAction="addUnwindToFirstWithSegue:" id="A1i-co-k4J"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gTQ-HI-3vm"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gTQ-HI-3vm">
+                            <connections>
+                                <action selector="saveTap:" destination="Kmm-uB-2Ji" id="jUh-FG-Z9b"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="StartDate" destination="GvK-QE-1tK" id="0tk-Jr-4uG"/>
+                        <outlet property="dailyButton1" destination="gEa-Yq-E41" id="YhS-LH-RPK"/>
                         <outlet property="endDate" destination="lgi-Sc-0Qj" id="5ql-hn-6tf"/>
                         <outlet property="endTime" destination="i4F-z8-uhL" id="Vid-nE-XLn"/>
                         <outlet property="endWeek" destination="beh-G8-9qP" id="cc6-p2-UCj"/>
                         <outlet property="startTime" destination="EbC-em-6dp" id="sz7-A7-0u6"/>
                         <outlet property="startWeek" destination="pQ6-lX-ERA" id="Ri7-kk-DCV"/>
+                        <outlet property="thingButton0" destination="KEg-MQ-7L3" id="8ff-kf-JVX"/>
                         <outlet property="thingNameText" destination="aTo-hd-aJv" id="py5-IF-O9x"/>
                     </connections>
                 </tableViewController>
