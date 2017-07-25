@@ -29,5 +29,29 @@ if date1?.compare(date2!) == ComparisonResult.orderedAscending {
 } else if date1?.compare(date2!) == ComparisonResult.orderedSame {
     print("Same date!!!")
 }
-//为了能让你pull
 
+let dateComponents = calendar.component(Calendar.Component.second, from: date2!)
+print(dateComponents)
+
+struct dateTime {
+    var year: Int
+    var month: Int
+    var day: Int
+    var hour: Int
+    var minute: Int
+    var second: Int
+}
+
+
+func dateTimeExtractive(date: Date) -> dateTime {
+    let a = calendar.component(Calendar.Component.year, from: date)
+    let b = calendar.component(Calendar.Component.month, from: date)
+    let c = calendar.component(Calendar.Component.day, from: date)
+    let d = calendar.component(Calendar.Component.hour, from: date)
+    let e = calendar.component(Calendar.Component.minute, from: date)
+    let f = calendar.component(Calendar.Component.second, from: date)
+    let datetime = dateTime(year: a, month: b, day: c, hour: d, minute: e, second: f)
+    return datetime
+}
+
+dateTimeExtractive(date: date2!).year

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9102BD51F272476007A4B87 /* operateThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102BD41F272476007A4B87 /* operateThings.swift */; };
 		DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6641F234CD100A07F44 /* AppDelegate.swift */; };
 		DD70E66A1F234CD100A07F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD70E6681F234CD100A07F44 /* Main.storyboard */; };
 		DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A9102BD41F272476007A4B87 /* operateThings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateThings.swift; sourceTree = "<group>"; };
 		DD70E6611F234CD100A07F44 /* F-Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "F-Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD70E6641F234CD100A07F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD70E6691F234CD100A07F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				DD70E6641F234CD100A07F44 /* AppDelegate.swift */,
+				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6681F234CD100A07F44 /* Main.storyboard */,
 				DDB7244E1F2431EF00585570 /* Assets.xcassets */,
 				DD70E6791F234DE300A07F44 /* FirstViewController.swift */,
@@ -75,9 +78,9 @@
 				DDB724541F247ED000585570 /* TabBarController.swift */,
 				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
+				A9102BD41F272476007A4B87 /* operateThings.swift */,
 				DDBD8A031F259674005A55BA /* MyPlayground.playground */,
 				DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */,
-				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6731F234CD100A07F44 /* Info.plist */,
 				DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */,
 			);
@@ -158,6 +161,7 @@
 			files = (
 				DD70E67C1F234E1200A07F44 /* SecondViewController.swift in Sources */,
 				DDB724551F247ED000585570 /* TabBarController.swift in Sources */,
+				A9102BD51F272476007A4B87 /* operateThings.swift in Sources */,
 				DD70E6821F234E4800A07F44 /* MenuTableViewController.swift in Sources */,
 				DD70E67A1F234DE300A07F44 /* FirstViewController.swift in Sources */,
 				DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */,
@@ -285,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "F-Time/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jndxttt.F-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,6 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "F-Time/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jndxttt.F-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
