@@ -11,16 +11,17 @@ import UIKit
 import CoreData
 
 
-struct OneThing {
-    var name:String
-    var starttime:String
-    var endtime:String
-    var priority:Bool
-    var remark = ""
-}
+
 //User对象创建成功之后，接下来就是通过对象来使用CoreData了
 class HandleCoreData: NSObject {
     
+    struct OneThing {
+        var name:String
+        var starttime:String
+        var endtime:String
+        var priority:Bool
+        var remark = ""
+    }
     //1、插入数据的具体操作如下
     /*
      * 通过AppDelegate单利来获取管理的数据上下文对象，操作实际内容
@@ -28,7 +29,7 @@ class HandleCoreData: NSObject {
      * 给实体对象赋值
      * 通过saveContext()保存实体对象
      */
-    class func insertData(one:OneThing){
+    func insertData(one:OneThing){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -58,8 +59,8 @@ class HandleCoreData: NSObject {
      * 通过context.fetch执行查询操作
      * 使用查询出来的数据
      */
-    class func queryData(){
-        
+    func queryData(){
+        print("调用成功")
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
@@ -106,7 +107,7 @@ class HandleCoreData: NSObject {
      * 将查询出来的数据进行修改,也即进行赋新值
      * 通过saveContext()保存修改后的实体对象
  
-    class func updateData(){
+    func updateData(){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate

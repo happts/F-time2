@@ -11,6 +11,8 @@ import CoreData
 
 class AddTableViewController: UITableViewController {
     
+    var operate = HandleCoreData()
+    
     var thing:Things!
     var pickerDT = false
     var startDateStr:String!
@@ -46,6 +48,7 @@ class AddTableViewController: UITableViewController {
         thing.endTime = endDateStr
         thing.priority = dailyOrNot
         appDelegate.saveContext()
+        
         performSegue(withIdentifier: "unwindToFirst", sender: self)
 
     }
@@ -56,6 +59,7 @@ class AddTableViewController: UITableViewController {
         StartDate.text = startDateStr
         endDate.text = startDateStr
         
+        operate.queryData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
