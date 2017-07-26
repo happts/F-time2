@@ -11,12 +11,35 @@ import UIKit
 class SecondViewController: UIViewController {
 
     @IBOutlet weak var todayNum: UILabel!
-    @IBOutlet weak var Mon: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let operate = HandleCoreData()
         todayNum.text = String(operate.queryData())
+        let view1 = UIView(frame: CGRect(x: 25, y: 280, width: 25, height: 150))
+        let view2 = UIView(frame: CGRect(x: 75, y: 280, width: 25, height: 150))
+        let view3 = UIView(frame: CGRect(x: 125, y: 280, width: 25, height: 150))
+        let view4 = UIView(frame: CGRect(x: 175, y: 280, width: 25, height: 150))
+        let view5 = UIView(frame: CGRect(x: 225, y: 280, width: 25, height: 150))
+        let view6 = UIView(frame: CGRect(x: 275, y: 280, width: 25, height: 150))
+        let view7 = UIView(frame: CGRect(x: 325, y: 280, width: 25, height: 150))
+
+        view1.backgroundColor = UIColor.white
+        view2.backgroundColor = UIColor.white
+        view3.backgroundColor = UIColor.white
+        view4.backgroundColor = UIColor.white
+        view5.backgroundColor = UIColor.white
+        view6.backgroundColor = UIColor.white
+        view7.backgroundColor = UIColor.white
+
+        self.view.addSubview(view1)
+        self.view.addSubview(view2)
+        self.view.addSubview(view3)
+        self.view.addSubview(view4)
+        self.view.addSubview(view5)
+        self.view.addSubview(view6)
+        self.view.addSubview(view7)
+
         // Do any additional setup after loading the view.
     }
 

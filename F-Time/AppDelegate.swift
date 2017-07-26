@@ -31,6 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("用户不允许")
             }
         }
+        //在模拟器中需要删除原APP 再运行
+        let operate = HandleCoreData()
+        let countID = UserDefaults.standard
+        if countID.integer(forKey: "ID")>0{
+            countID.set(operate.queryData(), forKey: "ID")
+        }
         
         return true
     }

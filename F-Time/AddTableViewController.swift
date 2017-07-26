@@ -37,8 +37,12 @@ class AddTableViewController: UITableViewController {
     
     @IBAction func saveTap(_ sender: UIBarButtonItem) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate //获取本 AppDelegate
-        thing = Things(context: appDelegate.persistentContainer.viewContext)
         
+        let countID = UserDefaults.standard
+        let thingID = countID.integer(forKey: "ID")
+        print(thingID)
+        thing = Things(context: appDelegate.persistentContainer.viewContext)
+        thing.thingID = Int64(thingID)
         thing.name = thingNameText.text
         thing.startTime = startDateStr
         thing.endTime = endDateStr
@@ -55,7 +59,6 @@ class AddTableViewController: UITableViewController {
         StartDate.text = startDateStr
         endDate.text = startDateStr
         
-        operate.queryData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

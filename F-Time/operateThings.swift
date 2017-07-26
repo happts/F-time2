@@ -86,17 +86,18 @@ class HandleCoreData: NSObject {
             let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
             num = fetchedObjects.count
             //遍历查询的结果
-            for info:Things in fetchedObjects{
-                
-                print("userID = \(info.name)")
-                print("userEmail = \(info.startTime)")
-                print("userPwd = \(info.endTime)")
-                print("+++++++++++++++++++++++++")
-            }
+//            for info:Things in fetchedObjects{
+//                
+//                print("userID = \(info.name)")
+//                print("userEmail = \(info.startTime)")
+//                print("userPwd = \(info.endTime)")
+//                print("+++++++++++++++++++++++++")
+//            }
         }catch {
             let nserror = error as NSError
             fatalError("查询错误： \(nserror), \(nserror.userInfo)")
         }
+        print(num)
         return num
     }
     
@@ -159,7 +160,7 @@ class HandleCoreData: NSObject {
      * 通过context.delete删除查询出来的某一个对象
      * 通过saveContext()保存修改后的实体对象
      */
-    class func deleteData(){
+    func deleteData(ID:Int){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -176,8 +177,8 @@ class HandleCoreData: NSObject {
         fetchRequest.entity = entity
             
             //设置查询条件
-//        ? let predicate = NSPredicate.init(format: "userID = '2'", "")
-//        fetchRequest.predicate = predicate
+        let predicate = NSPredicate.init(format: "thingID = '\(ID)'", "")
+        fetchRequest.predicate = predicate
         
         //查询操作
         do{
