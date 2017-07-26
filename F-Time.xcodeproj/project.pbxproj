@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9102BD51F272476007A4B87 /* operateThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102BD41F272476007A4B87 /* operateThings.swift */; };
+		A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */; };
 		DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6641F234CD100A07F44 /* AppDelegate.swift */; };
 		DD70E66A1F234CD100A07F44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD70E6681F234CD100A07F44 /* Main.storyboard */; };
 		DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		A9102BD41F272476007A4B87 /* operateThings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateThings.swift; sourceTree = "<group>"; };
+		A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
 		DD70E6611F234CD100A07F44 /* F-Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "F-Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD70E6641F234CD100A07F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD70E6691F234CD100A07F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,12 +74,13 @@
 				DD70E6641F234CD100A07F44 /* AppDelegate.swift */,
 				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6681F234CD100A07F44 /* Main.storyboard */,
+				A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */,
 				DDB7244E1F2431EF00585570 /* Assets.xcassets */,
+				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
+				DDB724541F247ED000585570 /* TabBarController.swift */,
 				DD70E6791F234DE300A07F44 /* FirstViewController.swift */,
 				DD70E67B1F234E1200A07F44 /* SecondViewController.swift */,
-				DDB724541F247ED000585570 /* TabBarController.swift */,
 				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
-				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
 				A9102BD41F272476007A4B87 /* operateThings.swift */,
 				DDBD8A031F259674005A55BA /* MyPlayground.playground */,
 				DD70E6811F234E4800A07F44 /* MenuTableViewController.swift */,
@@ -166,6 +169,7 @@
 				DD70E67A1F234DE300A07F44 /* FirstViewController.swift in Sources */,
 				DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */,
 				DD70E67E1F234E2800A07F44 /* ThirdTableViewController.swift in Sources */,
+				A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */,
 				DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */,
 				DD70E6801F234E3400A07F44 /* AddTableViewController.swift in Sources */,
 			);

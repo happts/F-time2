@@ -10,9 +10,13 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet weak var todayNum: UILabel!
+    @IBOutlet weak var Mon: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let operate = HandleCoreData()
+        todayNum.text = String(operate.queryData())
         // Do any additional setup after loading the view.
     }
 

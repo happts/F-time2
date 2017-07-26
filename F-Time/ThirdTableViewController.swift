@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ThirdTableViewController: UITableViewController {
     
+    var things:[Things]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "background"))
         
+        things = getThings()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,13 +36,14 @@ class ThirdTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 8
+        return things.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath) as! ThirdTableViewCell
+        
+        cell.thingLabel.text = things[indexPath.row].name
         // Configure the cell...
 
         return cell
@@ -91,4 +95,35 @@ class ThirdTableViewController: UITableViewController {
     }
     */
 
+    func getThings( ) -> [Things] {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        
+        //声明数据的请求
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        //        fetchRequest.fetchLimit = 10  //限制查询结果的数量
+        fetchRequest.fetchOffset = 0  //查询的偏移量
+        
+        //声明一个实体结构
+        let EntityName = "Things"
+        let entity:NSEntityDescription? = NSEntityDescription.entity(forEntityName: EntityName, in: context)
+        fetchRequest.entity = entity
+        
+        let things:[Things]
+        
+        //设置查询条件
+        //        ?let predicate = NSPredicate.init(format: "userID = '2'", "")
+        //        fetchRequest.predicate = predicate
+        
+        //查询操作
+        do{
+            let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
+            things = fetchedObjects
+        }catch {
+            let nserror = error as NSError
+            fatalError("查询错误： \(nserror), \(nserror.userInfo)")
+        }
+        return things
+    }
+    
 }
