@@ -19,25 +19,21 @@ class AddTableViewController: UITableViewController {
     var endDateStr:String!
     var dailyOrNot = false
     
-    @IBOutlet weak var startWeek: UILabel!
     @IBOutlet weak var StartDate: UILabel!
-    @IBOutlet weak var startTime: UILabel!
-
     @IBOutlet weak var thingNameText: UITextField!
-    @IBOutlet weak var endTime: UILabel!
-    @IBOutlet weak var endWeek: UILabel!
     @IBOutlet weak var endDate: UILabel!
+    @IBOutlet weak var dailyOrNotText: UILabel!
     
-    @IBOutlet weak var dailyButton1: UIButton!
-    @IBOutlet weak var thingButton0: UIButton!
-    @IBAction func thingButtonTap(_ sender: UIButton) {
-        dailyOrNot = false
-        dailyButton1.backgroundColor = UIColor.clear
+    @IBAction func dailyOrNotTextButton(_ sender: UIButton) {
+        if sender.tag == 1 {
+            dailyOrNot = true
+            dailyOrNotText.text = "事项"
+        } else {
+            dailyOrNot = false
+            dailyOrNotText.text = "日常"
+        }
     }
-    @IBAction func dailyButtonTap(_ sender: UIButton) {
-        dailyOrNot = true
-        thingButton0.backgroundColor = UIColor.clear
-    }
+
     
     @IBAction func saveTap(_ sender: UIBarButtonItem) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate //获取本 AppDelegate

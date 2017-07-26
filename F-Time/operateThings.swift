@@ -59,7 +59,8 @@ class HandleCoreData: NSObject {
      * 通过context.fetch执行查询操作
      * 使用查询出来的数据
      */
-    func queryData(){
+    
+    func queryData() -> Int{
         print("调用成功")
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -67,13 +68,14 @@ class HandleCoreData: NSObject {
         
         //声明数据的请求
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
-        fetchRequest.fetchLimit = 10  //限制查询结果的数量
+//        fetchRequest.fetchLimit = 10  //限制查询结果的数量
         fetchRequest.fetchOffset = 0  //查询的偏移量
         
         //声明一个实体结构
         let EntityName = "Things"
         let entity:NSEntityDescription? = NSEntityDescription.entity(forEntityName: EntityName, in: context)
         fetchRequest.entity = entity
+        var num:Int
             
             //设置查询条件
 //        ?let predicate = NSPredicate.init(format: "userID = '2'", "")
@@ -82,7 +84,7 @@ class HandleCoreData: NSObject {
         //查询操作
         do{
             let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
-            
+            num = fetchedObjects.count
             //遍历查询的结果
             for info:Things in fetchedObjects{
                 
@@ -95,6 +97,7 @@ class HandleCoreData: NSObject {
             let nserror = error as NSError
             fatalError("查询错误： \(nserror), \(nserror.userInfo)")
         }
+        return num
     }
     
     

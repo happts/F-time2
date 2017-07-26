@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 143/255, green: 195/255, blue: 186/255, alpha: 1)
         UITabBar.appearance().barTintColor = UIColor(red: 212/255, green: 203/255, blue: 198/255, alpha: 1)
         UITabBar.appearance().selectionIndicatorImage = UIImage(named: "select60")
-            //select60
+        //select60
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (granted, error) in
+            if granted {
+                print("用户允许")
+            } else {
+                print("用户不允许")
+            }
+        }
         
         return true
     }
