@@ -13,10 +13,16 @@ class ThirdTableViewController: UITableViewController {
     
     var things:[Things]!
     
+    var fc : NSFetchedResultsController<Things>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "background"))
+        self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "newbackground"))
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         
         things = getThings()
         // Uncomment the following line to preserve selection between presentations
@@ -31,9 +37,26 @@ class ThirdTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    //自定义右滑菜单
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let actionDel = UITableViewRowAction(style: .default, title: "删除")
+        {
+            (_, indexPath) in
+            self.things.remove(at: indexPath.row)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            context.delete(self.fc.object(at: indexPath))
+            appDelegate.saveContext()
+            //            tableView.deleteRows(at: [indexPath], with: .fade)//即时刷新 删除一行
+            
+        }
+        return [actionDel]
+    }
+
     // MARK: - Table view data source
 
-    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -64,13 +87,42 @@ class ThirdTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            self.things.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()//单元格更新
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        //执行操作
+        switch type
+        {
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
+            
+        default:
+            tableView.reloadData()
+        }
+        //数据源变化时同步到数组
+        if let object = controller.fetchedObjects{
+            things = object as! [Things]
+        }
+    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -86,15 +138,22 @@ class ThirdTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showDetail" {
+            let dest1 = segue.destination as! UINavigationController
+            let dest2 = dest1.topViewController as! DetailTableViewController
+            dest2.thing = things[tableView.indexPathForSelectedRow!.row]
+        }
+        
     }
-    */
+
 
     func getThings( ) -> [Things] {
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -127,4 +186,7 @@ class ThirdTableViewController: UITableViewController {
         return things
     }
     
+    @IBAction func detailUnwindToThird (segue: UIStoryboardSegue) {
+        
+    }
 }

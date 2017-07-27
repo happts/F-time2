@@ -14,15 +14,16 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let operate = HandleCoreData()
         todayNum.text = String(operate.queryData())
-        let view1 = UIView(frame: CGRect(x: 25, y: 280, width: 25, height: 150))
-        let view2 = UIView(frame: CGRect(x: 75, y: 280, width: 25, height: 150))
-        let view3 = UIView(frame: CGRect(x: 125, y: 280, width: 25, height: 150))
-        let view4 = UIView(frame: CGRect(x: 175, y: 280, width: 25, height: 150))
-        let view5 = UIView(frame: CGRect(x: 225, y: 280, width: 25, height: 150))
-        let view6 = UIView(frame: CGRect(x: 275, y: 280, width: 25, height: 150))
-        let view7 = UIView(frame: CGRect(x: 325, y: 280, width: 25, height: 150))
+        let view1 = UIView(frame: CGRect(x: 32, y: 280, width: 23, height: 165))
+        let view2 = UIView(frame: CGRect(x: 80, y: 280, width: 23, height: 165))
+        let view3 = UIView(frame: CGRect(x: 128, y: 280, width: 23, height: 165))
+        let view4 = UIView(frame: CGRect(x: 176, y: 280, width: 23, height: 165))
+        let view5 = UIView(frame: CGRect(x: 224, y: 280, width: 23, height: 165))
+        let view6 = UIView(frame: CGRect(x: 272, y: 280, width: 23, height: 165))
+        let view7 = UIView(frame: CGRect(x: 320, y: 280, width: 23, height: 165))
 
         view1.backgroundColor = UIColor.white
         view2.backgroundColor = UIColor.white

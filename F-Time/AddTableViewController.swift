@@ -22,15 +22,20 @@ class AddTableViewController: UITableViewController {
     @IBOutlet weak var StartDate: UILabel!
     @IBOutlet weak var thingNameText: UITextField!
     @IBOutlet weak var endDate: UILabel!
-    @IBOutlet weak var dailyOrNotText: UILabel!
+    @IBOutlet weak var thingRemarkText: UITextField!
+    @IBOutlet weak var dailyButton: UIButton!
+    @IBOutlet weak var dailyButton0: UIButton!
     
     @IBAction func dailyOrNotTextButton(_ sender: UIButton) {
         if sender.tag == 1 {
             dailyOrNot = true
-            dailyOrNotText.text = "事项"
+            dailyButton.setImage(UIImage(named: "daliyselect1"), for: .normal)
+            dailyButton0.setImage(UIImage(named: "dailyselect20"), for: .normal)
+            
         } else {
             dailyOrNot = false
-            dailyOrNotText.text = "日常"
+            dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
+            dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
         }
     }
 
@@ -47,13 +52,21 @@ class AddTableViewController: UITableViewController {
         thing.startTime = startDateStr
         thing.endTime = endDateStr
         thing.priority = dailyOrNot
+        thing.remark = thingRemarkText.text
         appDelegate.saveContext()
         
-        performSegue(withIdentifier: "unwindToFirst", sender: self)
+        performSegue(withIdentifier: "detailUnwindToThird", sender: self)
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        thingNameText.borderStyle = UITextBorderStyle.none
+        thingRemarkText.borderStyle = UITextBorderStyle.none
+        
+        self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "newerbackground"))
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
         startDateStr = dateStringTranser(date: Date())
         endDateStr = startDateStr
         StartDate.text = startDateStr
@@ -75,14 +88,14 @@ class AddTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //时间选择器-完成( UI 可简化)
-        if indexPath.row <= 1{
+        if indexPath.row == 3 || indexPath.row == 5 {
             
             let actionSheet = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n", message:  nil, preferredStyle:.actionSheet)
             
             let option4 = UIDatePicker()
             option4.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
             option4.datePickerMode = (pickerDT) ? UIDatePickerMode.time : UIDatePickerMode.date
-            option4.date = indexPath.row==0 ? StringDateTransfer(dateStr: startDateStr) : StringDateTransfer(dateStr: endDateStr)
+            option4.date = indexPath.row==3 ? StringDateTransfer(dateStr: startDateStr) : StringDateTransfer(dateStr: endDateStr)
             
             var title: String
             if pickerDT {
@@ -94,11 +107,11 @@ class AddTableViewController: UITableViewController {
             let option5 = UIAlertAction(title: title, style: .default, handler: { (_) in
                 self.pickerDT = !self.pickerDT
                 
-                if indexPath.row == 0{
+                if indexPath.row == 3{
                     self.startDateStr = self.dateStringTranser(date: option4.date)
                     self.StartDate.text = self.startDateStr
                 }
-                else if indexPath.row == 1{
+                else if indexPath.row == 5{
                     self.endDateStr = self.dateStringTranser(date: option4.date)
                     self.endDate.text = self.endDateStr
                 }
