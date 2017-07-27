@@ -25,10 +25,21 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var dailyButton: UIButton!
     @IBOutlet weak var dailyButton0: UIButton!
     
+    @IBAction func updateThing(_ sender: UIBarButtonItem) {
+        let operate = HandleCoreData()
+        let name = thingNameText.text!
+        let start = StartDate.text!
+        let end = endDate.text!
+        print(name,start,end)
+        operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end)
+        dismiss(animated: true, completion: nil)
+    }
+    //故事版连接到 exit 则不执行上述动作
+    
     @IBAction func dailyOrNotTextButton(_ sender: UIButton) {
         if sender.tag == 1 {
             dailyOrNot = true
-            dailyButton.setImage(UIImage(named: "daliyselect1"), for: .normal)
+            dailyButton.setImage(UIImage(named: "dailyselect1"), for: .normal)
             dailyButton0.setImage(UIImage(named: "dailyselect20"), for: .normal)
             
         } else {
@@ -44,15 +55,19 @@ class DetailTableViewController: UITableViewController {
         
         self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "newerbackground"))
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        thingNameText.borderStyle = UITextBorderStyle.none
+        thingRemarkText.borderStyle = UITextBorderStyle.none
         
         startDateStr = thing.startTime
         endDateStr = thing.endTime
+        
         StartDate.text = thing.startTime
         endDate.text = thing.endTime
         thingRemarkText.text = thing.remark
         thingNameText.text = thing.name
+        
         if thing.priority {
-            dailyButton.setImage(UIImage(named: "daliyselect10"), for: .normal)
+            dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
             dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
         } else {
             dailyButton.setImage(UIImage(named: "dailyselect1"), for: .normal)

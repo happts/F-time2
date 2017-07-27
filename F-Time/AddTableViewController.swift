@@ -29,7 +29,7 @@ class AddTableViewController: UITableViewController {
     @IBAction func dailyOrNotTextButton(_ sender: UIButton) {
         if sender.tag == 1 {
             dailyOrNot = true
-            dailyButton.setImage(UIImage(named: "daliyselect1"), for: .normal)
+            dailyButton.setImage(UIImage(named: "dailyselect1"), for: .normal)  
             dailyButton0.setImage(UIImage(named: "dailyselect20"), for: .normal)
             
         } else {
@@ -44,7 +44,9 @@ class AddTableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate //获取本 AppDelegate
         
         let countID = UserDefaults.standard
-        let thingID = countID.integer(forKey: "ID")
+        var thingID = countID.integer(forKey: "ID")
+        thingID+=1
+        countID.set(thingID, forKey: "ID")
         print(thingID)
         thing = Things(context: appDelegate.persistentContainer.viewContext)
         thing.thingID = Int64(thingID)
@@ -55,7 +57,7 @@ class AddTableViewController: UITableViewController {
         thing.remark = thingRemarkText.text
         appDelegate.saveContext()
         
-        performSegue(withIdentifier: "detailUnwindToThird", sender: self)
+        performSegue(withIdentifier: "unwindToFirst", sender: self)
 
     }
     override func viewDidLoad() {
