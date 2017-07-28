@@ -53,11 +53,11 @@ class AddTableViewController: UITableViewController {
         thing.name = thingNameText.text
         thing.startTime = startDateStr
         thing.endTime = endDateStr
-        thing.priority = dailyOrNot
+        thing.dailyOrnot = dailyOrNot
         thing.remark = thingRemarkText.text
         appDelegate.saveContext()
         
-        performSegue(withIdentifier: "unwindToFirst", sender: self)
+        performSegue(withIdentifier: "unwindToThird", sender: self)
 
     }
     

@@ -19,7 +19,7 @@ class HandleCoreData: NSObject {
         var name:String
         var starttime:String
         var endtime:String
-        var priority:Bool
+        var dailyOrnot:Bool
         var remark = ""
     }
     //1、插入数据的具体操作如下
@@ -43,7 +43,7 @@ class HandleCoreData: NSObject {
         thing.name = one.name
         thing.startTime = one.starttime
         thing.endTime = one.endtime
-        thing.priority = one.priority
+        thing.dailyOrnot = one.dailyOrnot
         thing.remark = one.remark
         
         //保存
