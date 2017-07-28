@@ -42,66 +42,6 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         things = getThings()
         image1View.image = UIImage(named:"小圆块块1")?.tint(color: UIColor.red, blendMode: .destinationIn)
-        
-        let currentDate = Date()
-        let hour = dateTimeExtractive(date: currentDate).hour
-        let minute = dateTimeExtractive(date: currentDate).minute
-        if minute < 10 {
-        timeLabel.text = "\(hour):0\(minute)"
-        }else{
-            timeLabel.text = "\(hour):\(minute)"
-        }
-        var things0 = things
-        for i in 0..<(things0?.count)! - 2 {
-            for j in i+1..<(things0?.count)! - 1 {
-                let a = StringDateTransfer(dateStr: (things0?[i].startTime!)!)
-                let b = StringDateTransfer(dateStr: (things0?[j].startTime!)!)
-                var c = things0?[0]
-                if a.compare(b) == ComparisonResult.orderedDescending{
-                    c = things0?[j]
-                    things0?[j] = (things0?[i])!
-                    things0?[i] = c!
-                }
-            }
-        }
-        /*
-        for i in 0..<(things?.count)! - 1 {
-            print("\(things0?[i].name)        \(things?[i].startTime)      \(things?[i].endTime)")
-        }
-        
-        for i in 0..<(things0?.count)! - 1 {
-            print("\(things0?[i].name)        \(things0?[i].startTime)      \(things0?[i].endTime)")
-        }
-        */
-        var thingCount = 0
-        for i in 0..<(things0?.count)! - 1{
-            let a = StringDateTransfer(dateStr: (things0?[i].startTime!)!)
-            if a.compare(currentDate) == ComparisonResult.orderedAscending{
-                thingCount += 1
-            }else{
-                break
-            }
-        }
-        
-        //print(thingCount)
-        //print(things0?.count)
-        
-        if thingCount >= (things0?.count)! {
-        }else if thingCount == (things0?.count)!-1 {
-            thing1Label.text = things0![thingCount-1].name
-            thing2Label.text = "暂无事项"
-            thing3Label.text = "暂无事项"
-        }else if thingCount == (things0?.count)!-2 {
-            thing1Label.text = things0![thingCount-1].name
-            thing2Label.text = things0![thingCount].name
-            thing3Label.text = "暂无事项"
-        }else{
-            thing1Label.text = things0![thingCount-1].name
-            thing2Label.text = things0![thingCount].name
-            thing3Label.text = things0![thingCount+1].name
-        }
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
