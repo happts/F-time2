@@ -34,7 +34,6 @@ class DetailTableViewController: UITableViewController {
         operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end)
         dismiss(animated: true, completion: nil)
     }
-    //故事版连接到 exit 则不执行上述动作
     
     @IBAction func dailyOrNotTextButton(_ sender: UIButton) {
         if sender.tag == 1 {
@@ -48,7 +47,6 @@ class DetailTableViewController: UITableViewController {
             dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +58,10 @@ class DetailTableViewController: UITableViewController {
         
         startDateStr = thing.startTime
         endDateStr = thing.endTime
-        
         StartDate.text = thing.startTime
         endDate.text = thing.endTime
         thingRemarkText.text = thing.remark
         thingNameText.text = thing.name
-        
         if thing.priority {
             dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
             dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
@@ -86,6 +82,7 @@ class DetailTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
     // MARK: - Table view data source
 
     

@@ -8,13 +8,98 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 class FirstViewController: UIViewController {
     
+    var things:[Things]!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var thing1Label: UILabel!
+    @IBOutlet weak var thing2Label: UILabel!
+    @IBOutlet weak var thing3Label: UILabel!
+    @IBOutlet weak var image1View: UIImageView!
+    @IBOutlet weak var image2View: UIImageView!
+    @IBOutlet weak var image3View: UIImageView!
+    @IBOutlet weak var image4View: UIImageView!
+    @IBOutlet weak var image5View: UIImageView!
+    @IBOutlet weak var image6View: UIImageView!
+    @IBOutlet weak var image7View: UIImageView!
+    @IBOutlet weak var image8View: UIImageView!
+    @IBOutlet weak var image9View: UIImageView!
+    @IBOutlet weak var image10View: UIImageView!
+    @IBOutlet weak var image11View: UIImageView!
+    @IBOutlet weak var image12View: UIImageView!
+    @IBOutlet weak var image13View: UIImageView!
+    @IBOutlet weak var image14View: UIImageView!
+    @IBOutlet weak var image15View: UIImageView!
+    @IBOutlet weak var image16View: UIImageView!
+    @IBOutlet weak var image17View: UIImageView!
+    @IBOutlet weak var image18View: UIImageView!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        things = getThings()
+        image1View.image = UIImage(named:"小圆块块1")?.tint(color: UIColor.red, blendMode: .destinationIn)
         
+        let currentDate = Date()
+        let hour = dateTimeExtractive(date: currentDate).hour
+        let minute = dateTimeExtractive(date: currentDate).minute
+        if minute < 10 {
+        timeLabel.text = "\(hour):0\(minute)"
+        }else{
+            timeLabel.text = "\(hour):\(minute)"
+        }
+        var things0 = things
+        for i in 0..<(things0?.count)! - 2 {
+            for j in i+1..<(things0?.count)! - 1 {
+                let a = StringDateTransfer(dateStr: (things0?[i].startTime!)!)
+                let b = StringDateTransfer(dateStr: (things0?[j].startTime!)!)
+                var c = things0?[0]
+                if a.compare(b) == ComparisonResult.orderedDescending{
+                    c = things0?[j]
+                    things0?[j] = (things0?[i])!
+                    things0?[i] = c!
+                }
+            }
+        }
+        /*
+        for i in 0..<(things?.count)! - 1 {
+            print("\(things0?[i].name)        \(things?[i].startTime)      \(things?[i].endTime)")
+        }
         
+        for i in 0..<(things0?.count)! - 1 {
+            print("\(things0?[i].name)        \(things0?[i].startTime)      \(things0?[i].endTime)")
+        }
+        */
+        var thingCount = 0
+        for i in 0..<(things0?.count)! - 1{
+            let a = StringDateTransfer(dateStr: (things0?[i].startTime!)!)
+            if a.compare(currentDate) == ComparisonResult.orderedAscending{
+                thingCount += 1
+            }else{
+                break
+            }
+        }
+        
+        //print(thingCount)
+        //print(things0?.count)
+        
+        if thingCount >= (things0?.count)! {
+        }else if thingCount == (things0?.count)!-1 {
+            thing1Label.text = things0![thingCount-1].name
+            thing2Label.text = "暂无事项"
+            thing3Label.text = "暂无事项"
+        }else if thingCount == (things0?.count)!-2 {
+            thing1Label.text = things0![thingCount-1].name
+            thing2Label.text = things0![thingCount].name
+            thing3Label.text = "暂无事项"
+        }else{
+            thing1Label.text = things0![thingCount-1].name
+            thing2Label.text = things0![thingCount].name
+            thing3Label.text = things0![thingCount+1].name
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -41,5 +126,71 @@ class FirstViewController: UIViewController {
     
     @IBAction func addUnwindToFirst (segue: UIStoryboardSegue) {
         
+    }
+    
+    func getThings( ) -> [Things] {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        
+        //声明数据的请求
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        //        fetchRequest.fetchLimit = 10  //限制查询结果的数量
+        fetchRequest.fetchOffset = 0  //查询的偏移量
+        
+        //声明一个实体结构
+        let EntityName = "Things"
+        let entity:NSEntityDescription? = NSEntityDescription.entity(forEntityName: EntityName, in: context)
+        fetchRequest.entity = entity
+        
+        let things:[Things]
+        
+        //设置查询条件
+        //        ?let predicate = NSPredicate.init(format: "userID = '2'", "")
+        //        fetchRequest.predicate = predicate
+        
+        //查询操作
+        do{
+            let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
+            things = fetchedObjects
+        }catch {
+            let nserror = error as NSError
+            fatalError("查询错误： \(nserror), \(nserror.userInfo)")
+        }
+        return things
+    }
+    
+    struct dateTime {
+        var year: Int
+        var month: Int
+        var day: Int
+        var hour: Int
+        var minute: Int
+        var second: Int
+    }
+    
+    func dateTimeExtractive(date: Date) -> dateTime {
+        let calendar = Calendar.current
+        let a = calendar.component(Calendar.Component.year, from: date)
+        let b = calendar.component(Calendar.Component.month, from: date)
+        let c = calendar.component(Calendar.Component.day, from: date)
+        let d = calendar.component(Calendar.Component.hour, from: date)
+        let e = calendar.component(Calendar.Component.minute, from: date)
+        let f = calendar.component(Calendar.Component.second, from: date)
+        let datetime = dateTime(year: a, month: b, day: c, hour: d, minute: e, second: f)
+        return datetime
+    }
+    
+    func dateStringTranser(date:Date) -> String {
+        let dFormatter = DateFormatter()
+        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
+        dFormatter.locale = Locale.current
+        return dFormatter.string(from: date)
+    }
+    
+    func StringDateTransfer(dateStr:String) -> Date {
+        let dFormatter = DateFormatter()
+        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
+        dFormatter.locale = Locale.current
+        return dFormatter.date(from: dateStr)!
     }
 }

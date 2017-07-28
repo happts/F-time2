@@ -21,7 +21,7 @@ class ThirdTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-
+        
         
         things = getThings()
         // Uncomment the following line to preserve selection between presentations
@@ -50,7 +50,6 @@ class ThirdTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath) as! ThirdTableViewCell
         
         cell.thingLabel.text = things[indexPath.row].name
-        print(things[indexPath.row].thingID)
         // Configure the cell...
 
         return cell
@@ -65,6 +64,18 @@ class ThirdTableViewController: UITableViewController {
     }
     */
 
+    //自定义右滑菜单
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath)  -> [UITableViewRowAction]? {
+        let actionDel = UITableViewRowAction(style: .default, title: "删除")
+        {
+            (_, indexPath) in
+            let operate = HandleCoreData()
+            operate.deleteData(ID: Int(self.things[indexPath.row].thingID))
+            self.things.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)//即时刷新 删除一行
+        }
+        return [actionDel]
+    }
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

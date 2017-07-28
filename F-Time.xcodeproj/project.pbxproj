@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A9102BD51F272476007A4B87 /* operateThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102BD41F272476007A4B87 /* operateThings.swift */; };
 		A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */; };
+		DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37A2BC1F2B15E500908D68 /* imageChange.swift */; };
 		DD6007DC1F29BBA2005F456A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD6007DB1F29BBA2005F456A /* Assets.xcassets */; };
 		DD6007DE1F29F144005F456A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6007DD1F29F144005F456A /* MenuViewController.swift */; };
 		DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70E6641F234CD100A07F44 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		A9102BD41F272476007A4B87 /* operateThings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateThings.swift; sourceTree = "<group>"; };
 		A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
+		DD37A2BC1F2B15E500908D68 /* imageChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageChange.swift; sourceTree = "<group>"; };
 		DD6007DB1F29BBA2005F456A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD6007DD1F29F144005F456A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		DD70E6611F234CD100A07F44 /* F-Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "F-Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 				DD6007DB1F29BBA2005F456A /* Assets.xcassets */,
 				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				A9102BD41F272476007A4B87 /* operateThings.swift */,
+				DD37A2BC1F2B15E500908D68 /* imageChange.swift */,
 				DDBD8A031F259674005A55BA /* MyPlayground.playground */,
 				DD70E6731F234CD100A07F44 /* Info.plist */,
 				DD70E66B1F234CD100A07F44 /* F_Time.xcdatamodeld */,
@@ -174,6 +177,7 @@
 				DD70E66D1F234CD100A07F44 /* F_Time.xcdatamodeld in Sources */,
 				DD70E67E1F234E2800A07F44 /* ThirdTableViewController.swift in Sources */,
 				A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */,
+				DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */,
 				DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */,
 				DD70E6801F234E3400A07F44 /* AddTableViewController.swift in Sources */,
 			);
