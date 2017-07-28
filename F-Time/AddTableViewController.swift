@@ -14,7 +14,7 @@ class AddTableViewController: UITableViewController {
     var operate = HandleCoreData()
     
     var thing:Things!
-    var pickerDT = false
+    var pickerDT = false	
     var startDateStr:String!
     var endDateStr:String!
     var dailyOrNot = false
@@ -60,6 +60,7 @@ class AddTableViewController: UITableViewController {
         performSegue(withIdentifier: "unwindToFirst", sender: self)
 
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -190,12 +191,14 @@ class AddTableViewController: UITableViewController {
     func dateStringTranser(date:Date) -> String {
         let dFormatter = DateFormatter()
         dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
+        dFormatter.locale = Locale.current
         return dFormatter.string(from: date)
     }
     
     func StringDateTransfer(dateStr:String) -> Date {
         let dFormatter = DateFormatter()
         dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
+        dFormatter.locale = Locale.current
         return dFormatter.date(from: dateStr)!
     }
 
