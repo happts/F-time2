@@ -86,31 +86,32 @@ class HandleCoreData: NSObject {
             let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
             num = fetchedObjects.count
             //遍历查询的结果
-            for info:Things in fetchedObjects{
-                
-                print("userID = \(info.name)")
-                print("userEmail = \(info.startTime)")
-                print("userPwd = \(info.endTime)")
-                print("+++++++++++++++++++++++++")
-            }
+//            for info:Things in fetchedObjects{
+//                
+//                print("userID = \(info.name)")
+//                print("userEmail = \(info.startTime)")
+//                print("userPwd = \(info.endTime)")
+//                print("+++++++++++++++++++++++++")
+//            }
         }catch {
             let nserror = error as NSError
             fatalError("查询错误： \(nserror), \(nserror.userInfo)")
         }
+        print(num)
         return num
     }
     
     
     //3、修改数据的具体操作如下
-    /*
-     * 利用NSFetchRequest方法来声明数据的请求，相当于查询语句
-     * 利用NSEntityDescription.entityForName方法声明一个实体结构，相当于表格结构
-     * 利用NSPredicate创建一个查询条件，并设置请求的查询条件
-     * 通过context.fetch执行查询操作
-     * 将查询出来的数据进行修改,也即进行赋新值
-     * 通过saveContext()保存修改后的实体对象
- 
-    func updateData(){
+//    
+//     * 利用NSFetchRequest方法来声明数据的请求，相当于查询语句
+//     * 利用NSEntityDescription.entityForName方法声明一个实体结构，相当于表格结构
+//     * 利用NSPredicate创建一个查询条件，并设置请求的查询条件
+//     * 通过context.fetch执行查询操作
+//     * 将查询出来的数据进行修改,也即进行赋新值
+//     * 通过saveContext()保存修改后的实体对象
+    
+    func updateData(id:Int,name:String,start:String,end:String){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -118,7 +119,7 @@ class HandleCoreData: NSObject {
         
         //声明数据的请求
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
-        fetchRequest.fetchLimit = 10  //限制查询结果的数量
+        fetchRequest.fetchLimit = 1
         fetchRequest.fetchOffset = 0  //查询的偏移量
         
         //声明一个实体结构
@@ -127,7 +128,7 @@ class HandleCoreData: NSObject {
         fetchRequest.entity = entity
             
             //设置查询条件
-        ? let predicate = NSPredicate.init(format: "userID = '2'", "")
+        let predicate = NSPredicate.init(format: "thingID = '\(id)'", "")
         fetchRequest.predicate = predicate
         
         //查询操作
@@ -136,9 +137,10 @@ class HandleCoreData: NSObject {
             
             //遍历查询的结果
             for info:Things in fetchedObjects{
-                //修改邮箱
-                ? //info.userEmail = "xyq@163.com"
                 
+                info.name = name
+                info.startTime = start
+                info.endTime = end
                 //重新保存
                 app.saveContext()
             }
@@ -147,7 +149,7 @@ class HandleCoreData: NSObject {
             fatalError("查询错误： \(nserror), \(nserror.userInfo)")
         }
     }
-    */
+
     
     
     //4、删除数据的具体操作如下
@@ -159,7 +161,7 @@ class HandleCoreData: NSObject {
      * 通过context.delete删除查询出来的某一个对象
      * 通过saveContext()保存修改后的实体对象
      */
-    class func deleteData(){
+    func deleteData(ID:Int){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -176,8 +178,8 @@ class HandleCoreData: NSObject {
         fetchRequest.entity = entity
             
             //设置查询条件
-//        ? let predicate = NSPredicate.init(format: "userID = '2'", "")
-//        fetchRequest.predicate = predicate
+        let predicate = NSPredicate.init(format: "thingID = '\(ID)'", "")
+        fetchRequest.predicate = predicate
         
         //查询操作
         do{

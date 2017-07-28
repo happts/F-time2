@@ -13,9 +13,15 @@ class ThirdTableViewController: UITableViewController {
     
     var things:[Things]!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "background"))
+        self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "newbackground"))
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         
         things = getThings()
         // Uncomment the following line to preserve selection between presentations
@@ -44,6 +50,7 @@ class ThirdTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath) as! ThirdTableViewCell
         
         cell.thingLabel.text = things[indexPath.row].name
+        print(things[indexPath.row].thingID)
         // Configure the cell...
 
         return cell
@@ -58,7 +65,7 @@ class ThirdTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -68,7 +75,7 @@ class ThirdTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -85,15 +92,22 @@ class ThirdTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showDetail" {
+            let dest1 = segue.destination as! UINavigationController
+            let dest2 = dest1.topViewController as! DetailTableViewController
+            dest2.thing = things[tableView.indexPathForSelectedRow!.row]
+        }
+        
     }
-    */
+
 
     func getThings( ) -> [Things] {
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -126,4 +140,7 @@ class ThirdTableViewController: UITableViewController {
         return things
     }
     
+    @IBAction func detailUnwindToThird (segue: UIStoryboardSegue) {
+        
+    }
 }

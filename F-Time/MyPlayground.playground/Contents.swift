@@ -75,3 +75,12 @@ UNUserNotificationCenter.current().add(request) { error in
         print("Time Interval Notification scheduled: \\\\(requestIdentifier)")
     }
 }
+
+func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    print(response)
+}
+func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    // 处理完成后条用 completionHandler ，用于指示在前台显示通知的形式
+    completionHandler(.alert)
+    print(notification)
+}
