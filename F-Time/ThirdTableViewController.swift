@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class ThirdTableViewController: UITableViewController {
+class ThirdTableViewController: UITableViewController ,NSFetchedResultsControllerDelegate{
     
     var things:[Things]!
     
+    var fc : NSFetchedResultsController<Things>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +23,37 @@ class ThirdTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        
-        things = getThings()
+        fetchAllData2()
+//        things = getThings()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    func fetchAllData2(){
+        let request:NSFetchRequest<Things> = Things.fetchRequest()
+        let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
+        request.sortDescriptors = [sd]
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //初始化
+        fc = NSFetchedResultsController(fetchRequest: request , managedObjectContext: context, sectionNameKeyPath:  nil, cacheName: nil  )
+        fc.delegate = self
+        
+        do {
+            try fc.performFetch()
+            if let objects = fc.fetchedObjects{
+                things = objects
+            }
+            
+        } catch  {
+            print(error)
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,6 +78,34 @@ class ThirdTableViewController: UITableViewController {
 
         return cell
     }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()//单元格更新
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    //单元格~数据每条 变化
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        //执行操作
+        switch type
+        {
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
+            
+        default:
+            tableView.reloadData()
+        }
+        //数据源变化时同步到数组
+        if let object = controller.fetchedObjects{
+            things = object as! [Things]
+        }
+    }
 
 
     /*
@@ -72,11 +124,11 @@ class ThirdTableViewController: UITableViewController {
             let operate = HandleCoreData()
             operate.deleteData(ID: Int(self.things[indexPath.row].thingID))
             self.things.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)//即时刷新 删除一行
+//            tableView.deleteRows(at: [indexPath], with: .fade)//即时刷新 删除一行
         }
         return [actionDel]
     }
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -86,7 +138,7 @@ class ThirdTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.

@@ -62,7 +62,7 @@ class DetailTableViewController: UITableViewController {
         endDate.text = thing.endTime
         thingRemarkText.text = thing.remark
         thingNameText.text = thing.name
-        if thing.priority {
+        if thing.dailyOrnot {
             dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
             dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
         } else {
