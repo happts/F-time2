@@ -9,9 +9,11 @@
 import UIKit
 import CoreData
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController,NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var todayNum: UILabel!
+    
+    var fc : NSFetchedResultsController<Things>!
     
     var things:[Things]!
     
@@ -66,11 +68,7 @@ class SecondViewController: UIViewController {
         return dateTimeExtractive(date: currentDate3).day
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        things = getThings()
-        
+    func addView(){
         let today = datetoday()
         
         todayNum.text = String(thingscalculate(day: today))
@@ -82,7 +80,7 @@ class SecondViewController: UIViewController {
         let view5 = UIView(frame: CGRect(x: 224, y: 445-16*heightcalculate(day: today+4), width: 23, height: 16*heightcalculate(day: today+4)))
         let view6 = UIView(frame: CGRect(x: 272, y: 445-16*heightcalculate(day: today+5), width: 23, height: 16*heightcalculate(day: today+5)))
         let view7 = UIView(frame: CGRect(x: 320, y: 445-16*heightcalculate(day: today+6), width: 23, height: 16*heightcalculate(day: today+6)))
-
+        
         view1.backgroundColor = UIColor.white
         view2.backgroundColor = UIColor.white
         view3.backgroundColor = UIColor.white
@@ -90,7 +88,15 @@ class SecondViewController: UIViewController {
         view5.backgroundColor = UIColor.white
         view6.backgroundColor = UIColor.white
         view7.backgroundColor = UIColor.white
-
+        
+        view1.tag = 1
+        view2.tag = 2
+        view3.tag = 3
+        view4.tag = 4
+        view5.tag = 5
+        view6.tag = 6
+        view7.tag = 7
+        
         self.view.addSubview(view1)
         self.view.addSubview(view2)
         self.view.addSubview(view3)
@@ -98,6 +104,16 @@ class SecondViewController: UIViewController {
         self.view.addSubview(view5)
         self.view.addSubview(view6)
         self.view.addSubview(view7)
+
+    }
+    // MARK: 系统
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        things = getThings()
+        fetchAllData2()
+        addView()
 
         // Do any additional setup after loading the view.
     }
@@ -107,6 +123,52 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        let today = datetoday()
+        
+        todayNum.text = String(thingscalculate(day: today))
+        for view in self.view.subviews{
+            if view.tag >= 1{
+                view.removeFromSuperview()
+            }
+        }
+        addView()
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        //数据源变化时同步到数组
+        if let object = controller.fetchedObjects{
+            things = object as! [Things]
+        }
+    }
+    func fetchAllData2(){
+        let request:NSFetchRequest<Things> = Things.fetchRequest()
+        let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
+        request.sortDescriptors = [sd]
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //初始化
+        fc = NSFetchedResultsController(fetchRequest: request , managedObjectContext: context, sectionNameKeyPath:  nil, cacheName: nil  )
+        fc.delegate = self
+        
+        do {
+            try fc.performFetch()
+            if let objects = fc.fetchedObjects{
+                things = objects
+            }
+            
+        } catch  {
+            print(error)
+        }
+    }
 
     /*
     // MARK: - Navigation

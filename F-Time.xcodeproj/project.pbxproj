@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9102BD51F272476007A4B87 /* operateThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102BD41F272476007A4B87 /* operateThings.swift */; };
+		A9E677E71F2CDBF5008EEA17 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E677E61F2CDBF5008EEA17 /* SecondView.swift */; };
 		A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */; };
 		DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37A2BC1F2B15E500908D68 /* imageChange.swift */; };
 		DD6007DC1F29BBA2005F456A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD6007DB1F29BBA2005F456A /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		A9102BD41F272476007A4B87 /* operateThings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateThings.swift; sourceTree = "<group>"; };
+		A9E677E61F2CDBF5008EEA17 /* SecondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
 		DD37A2BC1F2B15E500908D68 /* imageChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageChange.swift; sourceTree = "<group>"; };
 		DD6007DB1F29BBA2005F456A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				DD70E6641F234CD100A07F44 /* AppDelegate.swift */,
 				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6681F234CD100A07F44 /* Main.storyboard */,
+				A9E677E61F2CDBF5008EEA17 /* SecondView.swift */,
 				A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */,
 				DD70E67F1F234E3400A07F44 /* AddTableViewController.swift */,
 				DDB724541F247ED000585570 /* TabBarController.swift */,
@@ -128,7 +131,7 @@
 				TargetAttributes = {
 					DD70E6601F234CD100A07F44 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZU63YWUX27;
+						DevelopmentTeam = 4K4EN7YCLN;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -179,6 +182,7 @@
 				DD70E67E1F234E2800A07F44 /* ThirdTableViewController.swift in Sources */,
 				A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */,
 				DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */,
+				A9E677E71F2CDBF5008EEA17 /* SecondView.swift in Sources */,
 				DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */,
 				DD70E6801F234E3400A07F44 /* AddTableViewController.swift in Sources */,
 			);
@@ -301,11 +305,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZU63YWUX27;
+				DEVELOPMENT_TEAM = 4K4EN7YCLN;
 				INFOPLIST_FILE = "F-Time/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jndxttt.F-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jndxttt.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -315,11 +319,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZU63YWUX27;
+				DEVELOPMENT_TEAM = 4K4EN7YCLN;
 				INFOPLIST_FILE = "F-Time/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jndxttt.F-Time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jndxttt.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
