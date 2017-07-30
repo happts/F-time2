@@ -41,7 +41,152 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         things = getThings()
-        image1View.image = UIImage(named:"小圆块块1")?.tint(color: UIColor.red, blendMode: .destinationIn)
+        
+        let currentDate = Date()
+        let hour = dateTimeExtractive(date: currentDate).hour
+        let minute = dateTimeExtractive(date: currentDate).minute
+        if minute < 10 {
+            timeLabel.text = "\(hour):0\(minute)"
+        }else{
+            timeLabel.text = "\(hour):\(minute)"
+        }
+        
+        var newthings = things
+        func onSort(s1: Things, s2: Things) -> Bool{
+            let a = StringDateTransfer(dateStr: s1.startTime!)
+            let b = StringDateTransfer(dateStr: s2.startTime!)
+            return a.compare(b) == ComparisonResult.orderedAscending
+        }
+        
+        newthings?.sort(by: onSort)
+        
+        if things.count != 0{
+            
+            var index = newthings?.count
+            
+            for i in newthings! {
+                let a = StringDateTransfer(dateStr: i.startTime!)
+                let b = currentDate
+                if !(a.compare(b) == ComparisonResult.orderedAscending) {
+                    index = (newthings?.index(of: i))!
+                    break
+                }
+            }
+            
+            if (newthings?.count)! - index! == 1 {
+                thing1Label.text = newthings?[index!].name
+                thing2Label.text = "暂无事项"
+                thing3Label.text = "暂无事项"
+            }else if (newthings?.count)! - index! == 2{
+                thing1Label.text = newthings?[index!].name
+                thing2Label.text = newthings?[index!+1].name
+                thing3Label.text = "暂无事项"
+            }else if (newthings?.count)! - index! >= 3{
+                thing1Label.text = newthings?[index!].name
+                thing2Label.text = newthings?[index!+1].name
+                thing3Label.text = newthings?[index!+2].name
+            }
+        }
+
+        let calendar = Calendar.current
+        var dateArray = Array(repeatElement(currentDate, count: 19))
+        
+        
+        for i in 0..<19 {
+            dateArray[i] = calendar.date(byAdding: .minute, value: 10*i, to: currentDate)!
+        }
+        
+        for i in dateArray {
+            print(i)
+        }
+        
+        image1View.image = UIImage(named: "小圆块块1")
+        image2View.image = UIImage(named: "小圆块块2")
+        image3View.image = UIImage(named: "小圆块块3")
+        image4View.image = UIImage(named: "小圆块块4")
+        image5View.image = UIImage(named: "小圆块块5")
+        image6View.image = UIImage(named: "小圆块块6")
+        image7View.image = UIImage(named: "小圆块块7")
+        image8View.image = UIImage(named: "小圆块块8")
+        image9View.image = UIImage(named: "小圆块块9")
+        image10View.image = UIImage(named: "小圆块块10")
+        image11View.image = UIImage(named: "小圆块块11")
+        image12View.image = UIImage(named: "小圆块块12")
+        image13View.image = UIImage(named: "小圆块块13")
+        image14View.image = UIImage(named: "小圆块块14")
+        image15View.image = UIImage(named: "小圆块块15")
+        image16View.image = UIImage(named: "小圆块块16")
+        image17View.image = UIImage(named: "小圆块块17")
+        image18View.image = UIImage(named: "小圆块块18")
+        
+        
+        for i in newthings! {
+            let a = StringDateTransfer(dateStr: i.startTime!)
+            let b = StringDateTransfer(dateStr: i.endTime!)
+            if a.compare(dateArray[18]) == ComparisonResult.orderedDescending {
+                continue
+            }
+            if b.compare(dateArray[0]) == ComparisonResult.orderedAscending {
+                continue
+            }
+            if !((a.compare(dateArray[1]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[0]) == ComparisonResult.orderedAscending)) {
+                image1View.image = UIImage(named: "小圆块块1")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[2]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[1]) == ComparisonResult.orderedAscending)) {
+                image2View.image = UIImage(named: "小圆块块2")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[3]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[2]) == ComparisonResult.orderedAscending)) {
+                image3View.image = UIImage(named: "小圆块块3")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[4]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[3]) == ComparisonResult.orderedAscending)) {
+                image4View.image = UIImage(named: "小圆块块4")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[5]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[4]) == ComparisonResult.orderedAscending)) {
+                image5View.image = UIImage(named: "小圆块块5")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[6]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[5]) == ComparisonResult.orderedAscending)) {
+                image6View.image = UIImage(named: "小圆块块6")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[7]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[6]) == ComparisonResult.orderedAscending)) {
+                image7View.image = UIImage(named: "小圆块块7")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[8]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[7]) == ComparisonResult.orderedAscending)) {
+                image8View.image = UIImage(named: "小圆块块8")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[9]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[8]) == ComparisonResult.orderedAscending)) {
+                image9View.image = UIImage(named: "小圆块块9")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[10]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[9]) == ComparisonResult.orderedAscending)) {
+                image10View.image = UIImage(named: "小圆块块10")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[11]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[10]) == ComparisonResult.orderedAscending)) {
+                image11View.image = UIImage(named: "小圆块块11")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[12]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[11]) == ComparisonResult.orderedAscending)) {
+                image12View.image = UIImage(named: "小圆块块12")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[13]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[12]) == ComparisonResult.orderedAscending)) {
+                image13View.image = UIImage(named: "小圆块块13")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[14]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[13]) == ComparisonResult.orderedAscending)) {
+                image14View.image = UIImage(named: "小圆块块14")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[15]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[14]) == ComparisonResult.orderedAscending)) {
+                image15View.image = UIImage(named: "小圆块块15")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[16]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[15]) == ComparisonResult.orderedAscending)) {
+                image16View.image = UIImage(named: "小圆块块16")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[17]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[16]) == ComparisonResult.orderedAscending)) {
+                image17View.image = UIImage(named: "小圆块块17")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            if !((a.compare(dateArray[18]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[17]) == ComparisonResult.orderedAscending)) {
+                image18View.image = UIImage(named: "小圆块块18")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
+            }
+            
+        }
+ 
+        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,10 +206,6 @@ class FirstViewController: UIViewController {
     */
     
     @IBAction func menuUnwindToFirst (segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func addUnwindToFirst (segue: UIStoryboardSegue) {
         
     }
     

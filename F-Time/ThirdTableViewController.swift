@@ -123,7 +123,7 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
             (_, indexPath) in
             let operate = HandleCoreData()
             operate.deleteData(ID: Int(self.things[indexPath.row].thingID))
-            self.things.remove(at: indexPath.row)
+//            self.things.remove(at: indexPath.row)
 //            tableView.deleteRows(at: [indexPath], with: .fade)//即时刷新 删除一行
         }
         return [actionDel]

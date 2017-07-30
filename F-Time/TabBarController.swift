@@ -13,6 +13,8 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBar.tintColor = UIColor(red: 161/255, green: 150/255, blue: 155/255, alpha: 1)
+        
         var items: [UITabBarItem] = self.tabBar.items! as [UITabBarItem]
         //设置默认图片直接在IB添加新tabBar的时候Image选择好，这里是修改被选中时的图片
         //通过name获取图片，将设计切好的图 放到Images.xcassets中
