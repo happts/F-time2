@@ -10,7 +10,8 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
     
-    var operate = HandleCoreData()
+    let operate = HandleCoreData()
+    let OD = operateDate()
     
     var thing:Things!
     var pickerDT = false
@@ -28,11 +29,12 @@ class DetailTableViewController: UITableViewController {
     @IBAction func updateThing(_ sender: UIBarButtonItem) {
         let operate = HandleCoreData()
         let name = thingNameText.text!
-        let start = StartDate.text!
-        let end = endDate.text!
-        let dailyOrNot = self.dailyOrNot
-        print(name,start,end)
-        operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end,dailyOrNot: dailyOrNot)
+        let start = OD.StringDateTransfer(dateStr: StartDate.text!) as NSDate
+        let end = OD.StringDateTransfer(dateStr: endDate.text!) as NSDate
+        var remark = " "
+        remark = thingRemarkText.text!
+        
+        operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end ,dailyOrNot: dailyOrNot,remark: remark)
         dismiss(animated: true, completion: nil)
     }
     
@@ -57,18 +59,20 @@ class DetailTableViewController: UITableViewController {
         thingNameText.borderStyle = UITextBorderStyle.none
         thingRemarkText.borderStyle = UITextBorderStyle.none
         
-        startDateStr = thing.startTime
-        endDateStr = thing.endTime
-        StartDate.text = thing.startTime
-        endDate.text = thing.endTime
+        startDateStr = OD.dateStringTranser(date: thing.startTime as! Date)
+        endDateStr = OD.dateStringTranser(date: thing.endTime as! Date)
+        
+        StartDate.text = startDateStr
+        endDate.text = endDateStr
+        
         thingRemarkText.text = thing.remark
         thingNameText.text = thing.name
         if thing.dailyOrnot {
-            dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
-            dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
-        } else {
             dailyButton.setImage(UIImage(named: "dailyselect1"), for: .normal)
             dailyButton0.setImage(UIImage(named: "dailyselect20"), for: .normal)
+        } else {
+            dailyButton.setImage(UIImage(named: "dailyselect10"), for: .normal)
+            dailyButton0.setImage(UIImage(named: "dailyselect2"), for: .normal)
         }
 
         // Uncomment the following line to preserve selection between presentations

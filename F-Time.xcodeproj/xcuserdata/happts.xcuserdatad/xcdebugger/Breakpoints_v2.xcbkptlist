@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "F-Time/ThirdTableViewController.swift"
-            timestampString = "523086325.424058"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "controllerWillChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "F-Time/ThirdTableViewController.swift"
-            timestampString = "523086325.424058"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "controllerDidChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -41,12 +41,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "F-Time/SecondViewController.swift"
-            timestampString = "523076542.236961"
+            filePath = "F-Time/ThirdTableViewController.swift"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -54,32 +54,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "F-Time/SecondViewController.swift"
-            timestampString = "523076542.236961"
+            filePath = "F-Time/ThirdTableViewController.swift"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "controllerDidChangeContent(_:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "F-Time/SecondViewController.swift"
-            timestampString = "523076542.236961"
+            filePath = "F-Time/ThirdTableViewController.swift"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "controllerWillChangeContent(_:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "F-Time/ThirdTableViewController.swift"
-            timestampString = "523086325.424058"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,13 +106,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "F-Time/ThirdTableViewController.swift"
-            timestampString = "523086325.424058"
+            timestampString = "523545414.077825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "F-Time/ThirdTableViewController.swift"
+            timestampString = "523545414.077825"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "F_Time.ThirdTableViewController.controller (__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange : Any, at : Swift.Optional&lt;Foundation.IndexPath&gt;, for : __C.NSFetchedResultsChangeType, newIndexPath : Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "F-Time"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/happts/Desktop/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%88%9B%E6%96%B0%E8%B5%9B/finally/F-Time/ThirdTableViewController.swift"
+                  timestampString = "523638442.676435"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "1795">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "F_Time.ThirdTableViewController.controller (__ObjC.NSFetchedResultsController&lt;__ObjC.NSFetchRequestResult&gt;, didChange : Any, at : Swift.Optional&lt;Foundation.IndexPath&gt;, for : __C.NSFetchedResultsChangeType, newIndexPath : Swift.Optional&lt;Foundation.IndexPath&gt;) -&gt; ()"
+                  moduleName = "F-Time"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/happts/Desktop/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%88%9B%E6%96%B0%E8%B5%9B/finally/F-Time/ThirdTableViewController.swift"
+                  timestampString = "523638442.678429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
+                  offsetFromSymbolStart = "1927">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

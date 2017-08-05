@@ -8,13 +8,14 @@
 
 import UIKit
 import CoreData
-import UserNotifications
 
 class ThirdTableViewController: UITableViewController ,NSFetchedResultsControllerDelegate{
     
-    var things:[Things]!
+    var things:[Things]=[]
     
     var fc : NSFetchedResultsController<Things>!
+    
+    var OD = operateDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,34 +24,24 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         fetchAllData2()
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (success, error) in
-            if success {
-                print("success")
-            } else {
-                print("error")
-            }
+        if things.count>0{
+            things.sort(by: onSort)
         }
-        let content = UNMutableNotificationContent()
-        content.title = ""
-        content.subtitle = ""
-        content.body = "body triggered"
-        
-        //        let trigger2 = UNCalendarNotificationTrigger
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "notification.id.01", content: content, trigger: trigger)
-        
-        // 4
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-//        things = getThings()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
+    
+    func onSort(s1: Things, s2: Things) -> Bool{
+        let a = s1.startTime! as Date
+        let b = s2.startTime! as Date
+        return a.compare(b) == ComparisonResult.orderedAscending
+    }
+    
     func fetchAllData2(){
         let request:NSFetchRequest<Things> = Things.fetchRequest()
         let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
@@ -66,6 +57,13 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
         do {
             try fc.performFetch()
             if let objects = fc.fetchedObjects{
+//                for i in objects {
+//                    let start = OD.StringDateTransfer(dateStr: i.startTime!)
+//                    let end = OD.StringDateTransfer(dateStr: i.endTime!)
+//                    if start.compare(Date()) == ComparisonResult.orderedDescending && end.compare(Date()) == ComparisonResult.orderedDescending {
+//                        things.append(i)
+//                    }
+//                }
                 things = objects
             }
             
@@ -92,8 +90,26 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath) as! ThirdTableViewCell
-        let str = things[indexPath.row].name! + "\n" + String(things[indexPath.row].thingID)
-        cell.thingLabel.text = str
+        
+        cell.thingLabel.text = things[indexPath.row].name
+        let thingTime = things[indexPath.row].startTime as! Date
+        let thingTimeHour = OD.dateTimeExtractive(date: thingTime).hour
+        let thingTimeMinute = OD.dateTimeExtractive(date: thingTime).minute
+        
+        if thingTimeMinute < 10 {
+            cell.timeLabel.text = "\(thingTimeHour):0\(thingTimeMinute)"
+        } else {
+            cell.timeLabel.text = "\(thingTimeHour):\(thingTimeMinute)"
+        }
+        
+        
+        if things[indexPath.row].dailyOrnot {
+            cell.colorView.backgroundColor = UIColor(red: 209/255, green: 192/255, blue: 165/255, alpha: 1)
+        } else {
+            cell.colorView.backgroundColor = UIColor(red: 161/255, green: 150/255, blue: 155/255, alpha: 1)
+        }
+    
+        
         // Configure the cell...
 
         return cell
@@ -125,6 +141,7 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
         if let object = controller.fetchedObjects{
             things = object as! [Things]
         }
+        things.sort(by: onSort)
     }
 
 

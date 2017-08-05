@@ -11,6 +11,8 @@ import UIKit
 class ThirdTableViewCell: UITableViewCell {
 
     @IBOutlet weak var thingLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

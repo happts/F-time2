@@ -8,10 +8,12 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class AddTableViewController: UITableViewController {
     
     var operate = HandleCoreData()
+    let OD = operateDate()
     
     var thing:Things!
     var pickerDT = false	
@@ -31,6 +33,7 @@ class AddTableViewController: UITableViewController {
             dailyOrNot = true
             dailyButton.setImage(UIImage(named: "dailyselect1"), for: .normal)  
             dailyButton0.setImage(UIImage(named: "dailyselect20"), for: .normal)
+            print(dailyOrNot)
             
         } else {
             dailyOrNot = false
@@ -51,14 +54,33 @@ class AddTableViewController: UITableViewController {
         thing = Things(context: appDelegate.persistentContainer.viewContext)
         thing.thingID = Int64(thingID)
         thing.name = thingNameText.text
-        thing.startTime = startDateStr
-        thing.endTime = endDateStr
+        thing.startTime =  OD.StringDateTransfer(dateStr: startDateStr) as NSDate!
+        thing.endTime = OD.StringDateTransfer(dateStr: endDateStr) as NSDate!
         thing.dailyOrnot = dailyOrNot
         thing.remark = thingRemarkText.text
+        thing.weekday = OD.getWeekday(date: thing.startTime as! Date)
         appDelegate.saveContext()
         
+        
+        //通知
+        let content = UNMutableNotificationContent()
+        content.title = ""
+        content.subtitle = ""
+        content.body = "body addController"
+        
+        var conmponent = DateComponents()
+        conmponent.weekday = OD.dateTimeExtractive(date: thing.startTime as! Date).weekday
+        conmponent.hour = OD.dateTimeExtractive(date: thing.startTime as! Date).hour
+        conmponent.minute = 30
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: conmponent, repeats: true)
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification\(thingID)", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
         performSegue(withIdentifier: "unwindToThird", sender: self)
-
+        
     }
     
     override func viewDidLoad() {
@@ -70,7 +92,7 @@ class AddTableViewController: UITableViewController {
         self.tableView.backgroundView = UIImageView.init(image:UIImage(named: "newerbackground"))
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
-        startDateStr = dateStringTranser(date: Date())
+        startDateStr = OD.dateStringTranser(date: Date())
         endDateStr = startDateStr
         StartDate.text = startDateStr
         endDate.text = startDateStr
@@ -90,7 +112,7 @@ class AddTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //时间选择器-完成( UI 可简化)
+        //时间选择
         if indexPath.row == 3 || indexPath.row == 5 {
             
             let actionSheet = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n", message:  nil, preferredStyle:.actionSheet)
@@ -98,7 +120,7 @@ class AddTableViewController: UITableViewController {
             let option4 = UIDatePicker()
             option4.locale = NSLocale(localeIdentifier: "zh_CN") as Locale
             option4.datePickerMode = (pickerDT) ? UIDatePickerMode.time : UIDatePickerMode.date
-            option4.date = indexPath.row==3 ? StringDateTransfer(dateStr: startDateStr) : StringDateTransfer(dateStr: endDateStr)
+            option4.date = indexPath.row==3 ? OD.StringDateTransfer(dateStr: startDateStr) : OD.StringDateTransfer(dateStr: endDateStr)
             
             var title: String
             if pickerDT {
@@ -111,11 +133,11 @@ class AddTableViewController: UITableViewController {
                 self.pickerDT = !self.pickerDT
                 
                 if indexPath.row == 3{
-                    self.startDateStr = self.dateStringTranser(date: option4.date)
+                    self.startDateStr = self.OD.dateStringTranser(date: option4.date)
                     self.StartDate.text = self.startDateStr
                 }
                 else if indexPath.row == 5{
-                    self.endDateStr = self.dateStringTranser(date: option4.date)
+                    self.endDateStr = self.OD.dateStringTranser(date: option4.date)
                     self.endDate.text = self.endDateStr
                 }
                 
@@ -187,19 +209,5 @@ class AddTableViewController: UITableViewController {
     }
     */
     
-    // MARK: 数据处理函数
-    func dateStringTranser(date:Date) -> String {
-        let dFormatter = DateFormatter()
-        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
-        dFormatter.locale = Locale.current
-        return dFormatter.string(from: date)
-    }
-    
-    func StringDateTransfer(dateStr:String) -> Date {
-        let dFormatter = DateFormatter()
-        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
-        dFormatter.locale = Locale.current
-        return dFormatter.date(from: dateStr)!
-    }
 
 }

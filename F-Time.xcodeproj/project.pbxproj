@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9102BD51F272476007A4B87 /* operateThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9102BD41F272476007A4B87 /* operateThings.swift */; };
+		A9E1945E1F2DCF430050773B /* operateDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E1945D1F2DCF430050773B /* operateDate.swift */; };
 		A9E677E71F2CDBF5008EEA17 /* SecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E677E61F2CDBF5008EEA17 /* SecondView.swift */; };
 		A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */; };
 		DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37A2BC1F2B15E500908D68 /* imageChange.swift */; };
@@ -26,8 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A90A920D1F2D991D0032E003 /* F-Time.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "F-Time.entitlements"; sourceTree = "<group>"; };
 		A9102BD41F272476007A4B87 /* operateThings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateThings.swift; sourceTree = "<group>"; };
+		A9E1945D1F2DCF430050773B /* operateDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = operateDate.swift; sourceTree = "<group>"; };
 		A9E677E61F2CDBF5008EEA17 /* SecondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondView.swift; sourceTree = "<group>"; };
 		A9F5A8F91F288AF000A9C8C6 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
 		DD37A2BC1F2B15E500908D68 /* imageChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageChange.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		DD70E6631F234CD100A07F44 /* F-Time */ = {
 			isa = PBXGroup;
 			children = (
-				A90A920D1F2D991D0032E003 /* F-Time.entitlements */,
 				DD70E6641F234CD100A07F44 /* AppDelegate.swift */,
 				DD70E6701F234CD100A07F44 /* LaunchScreen.storyboard */,
 				DD70E6681F234CD100A07F44 /* Main.storyboard */,
@@ -89,10 +89,11 @@
 				DD6007DD1F29F144005F456A /* MenuViewController.swift */,
 				DD70E6791F234DE300A07F44 /* FirstViewController.swift */,
 				DD70E67B1F234E1200A07F44 /* SecondViewController.swift */,
+				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				DDB940EF1F29824200102C2F /* DetailTableViewController.swift */,
 				DD6007DB1F29BBA2005F456A /* Assets.xcassets */,
-				DD70E67D1F234E2800A07F44 /* ThirdTableViewController.swift */,
 				A9102BD41F272476007A4B87 /* operateThings.swift */,
+				A9E1945D1F2DCF430050773B /* operateDate.swift */,
 				DD37A2BC1F2B15E500908D68 /* imageChange.swift */,
 				DDBD8A031F259674005A55BA /* MyPlayground.playground */,
 				DD70E6731F234CD100A07F44 /* Info.plist */,
@@ -135,11 +136,6 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZU63YWUX27;
 						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Push = {
-								enabled = 0;
-							};
-						};
 					};
 				};
 			};
@@ -189,6 +185,7 @@
 				DD70E67E1F234E2800A07F44 /* ThirdTableViewController.swift in Sources */,
 				A9F5A8FA1F288AF000A9C8C6 /* ThirdTableViewCell.swift in Sources */,
 				DD37A2BD1F2B15E500908D68 /* imageChange.swift in Sources */,
+				A9E1945E1F2DCF430050773B /* operateDate.swift in Sources */,
 				A9E677E71F2CDBF5008EEA17 /* SecondView.swift in Sources */,
 				DD70E6651F234CD100A07F44 /* AppDelegate.swift in Sources */,
 				DD70E6801F234E3400A07F44 /* AddTableViewController.swift in Sources */,
@@ -316,7 +313,7 @@
 				INFOPLIST_FILE = "F-Time/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "happts.F-time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.happts.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -330,7 +327,7 @@
 				INFOPLIST_FILE = "F-Time/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "happts.F-time";
+				PRODUCT_BUNDLE_IDENTIFIER = com.happts.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

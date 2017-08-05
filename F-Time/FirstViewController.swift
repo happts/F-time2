@@ -10,9 +10,13 @@ import UIKit
 import UserNotifications
 import CoreData
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController,NSFetchedResultsControllerDelegate {
     
     var things:[Things]!
+    
+    var fc : NSFetchedResultsController<Things>!
+    
+    var OD = operateDate()
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var thing1Label: UILabel!
@@ -36,15 +40,79 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var image16View: UIImageView!
     @IBOutlet weak var image17View: UIImageView!
     @IBOutlet weak var image18View: UIImageView!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        things = getThings()
         
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchAllData2()
+        loadThing()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        //数据源变化时同步到数组
+        if let object = controller.fetchedObjects{
+            things = object as! [Things]
+        }
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    @IBAction func menuUnwindToFirst (segue: UIStoryboardSegue) {
+        
+    }
+    func fetchAllData2(){
+        let request:NSFetchRequest<Things> = Things.fetchRequest()
+        let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
+        request.sortDescriptors = [sd]
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //初始化
+        fc = NSFetchedResultsController(fetchRequest: request , managedObjectContext: context, sectionNameKeyPath:  nil, cacheName: nil  )
+        fc.delegate = self
+        
+        do {
+            try fc.performFetch()
+            if let objects = fc.fetchedObjects{
+                things = objects
+            }
+            
+        } catch  {
+            print(error)
+        }
+    }
+
+    func loadThing() {
         let currentDate = Date()
-        let hour = dateTimeExtractive(date: currentDate).hour
-        let minute = dateTimeExtractive(date: currentDate).minute
+        let hour = OD.dateTimeExtractive(date: currentDate).hour
+        let minute = OD.dateTimeExtractive(date: currentDate).minute
         if minute < 10 {
             timeLabel.text = "\(hour):0\(minute)"
         }else{
@@ -53,8 +121,8 @@ class FirstViewController: UIViewController {
         
         var newthings = things
         func onSort(s1: Things, s2: Things) -> Bool{
-            let a = StringDateTransfer(dateStr: s1.startTime!)
-            let b = StringDateTransfer(dateStr: s2.startTime!)
+            let a = s1.startTime! as Date
+            let b = s2.startTime! as Date
             return a.compare(b) == ComparisonResult.orderedAscending
         }
         
@@ -65,7 +133,7 @@ class FirstViewController: UIViewController {
             var index = newthings?.count
             
             for i in newthings! {
-                let a = StringDateTransfer(dateStr: i.startTime!)
+                let a = i.startTime! as Date
                 let b = currentDate
                 if !(a.compare(b) == ComparisonResult.orderedAscending) {
                     index = (newthings?.index(of: i))!
@@ -87,7 +155,7 @@ class FirstViewController: UIViewController {
                 thing3Label.text = newthings?[index!+2].name
             }
         }
-
+        
         let calendar = Calendar.current
         var dateArray = Array(repeatElement(currentDate, count: 19))
         
@@ -121,8 +189,8 @@ class FirstViewController: UIViewController {
         
         
         for i in newthings! {
-            let a = StringDateTransfer(dateStr: i.startTime!)
-            let b = StringDateTransfer(dateStr: i.endTime!)
+            let a = i.startTime! as Date
+            let b = i.endTime! as Date
             if a.compare(dateArray[18]) == ComparisonResult.orderedDescending {
                 continue
             }
@@ -183,95 +251,9 @@ class FirstViewController: UIViewController {
             if !((a.compare(dateArray[18]) == ComparisonResult.orderedDescending) || (b.compare(dateArray[17]) == ComparisonResult.orderedAscending)) {
                 image18View.image = UIImage(named: "小圆块块18")?.tint(color: UIColor(red: 194/255, green: 203/255, blue: 218/255, alpha: 1), blendMode: .destinationIn)
             }
-            
         }
- 
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
-    @IBAction func menuUnwindToFirst (segue: UIStoryboardSegue) {
-        
-    }
-    
-    func getThings( ) -> [Things] {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        
-        //声明数据的请求
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
-        //        fetchRequest.fetchLimit = 10  //限制查询结果的数量
-        fetchRequest.fetchOffset = 0  //查询的偏移量
-        
-        //声明一个实体结构
-        let EntityName = "Things"
-        let entity:NSEntityDescription? = NSEntityDescription.entity(forEntityName: EntityName, in: context)
-        fetchRequest.entity = entity
-        
-        let things:[Things]
-        
-        //设置查询条件
-        //        ?let predicate = NSPredicate.init(format: "userID = '2'", "")
-        //        fetchRequest.predicate = predicate
-        
-        //查询操作
-        do{
-            let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
-            things = fetchedObjects
-        }catch {
-            let nserror = error as NSError
-            fatalError("查询错误： \(nserror), \(nserror.userInfo)")
-        }
-        return things
-    }
-    
-    struct dateTime {
-        var year: Int
-        var month: Int
-        var day: Int
-        var hour: Int
-        var minute: Int
-        var second: Int
-    }
-    
-    func dateTimeExtractive(date: Date) -> dateTime {
-        let calendar = Calendar.current
-        let a = calendar.component(Calendar.Component.year, from: date)
-        let b = calendar.component(Calendar.Component.month, from: date)
-        let c = calendar.component(Calendar.Component.day, from: date)
-        let d = calendar.component(Calendar.Component.hour, from: date)
-        let e = calendar.component(Calendar.Component.minute, from: date)
-        let f = calendar.component(Calendar.Component.second, from: date)
-        let datetime = dateTime(year: a, month: b, day: c, hour: d, minute: e, second: f)
-        return datetime
-    }
-    
-    func dateStringTranser(date:Date) -> String {
-        let dFormatter = DateFormatter()
-        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
-        dFormatter.locale = Locale.current
-        return dFormatter.string(from: date)
-    }
-    
-    func StringDateTransfer(dateStr:String) -> Date {
-        let dFormatter = DateFormatter()
-        dFormatter.dateFormat = "yyyy年MM月dd日HH时mm"
-        dFormatter.locale = Locale.current
-        return dFormatter.date(from: dateStr)!
-    }
 }

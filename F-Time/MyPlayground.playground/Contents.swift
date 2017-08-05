@@ -8,7 +8,8 @@ print(currentDate)
 
 let dateFormatter = DateFormatter()
 dateFormatter.locale = Locale.current
-
+dateFormatter.dateFormat = "EEEE"
+var string1 = dateFormatter.string(from: currentDate)
 let calendar = Calendar.current
 
 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -50,12 +51,12 @@ func dateTimeExtractive(date: Date) -> dateTime {
     let c = calendar.component(Calendar.Component.day, from: date)
     let d = calendar.component(Calendar.Component.hour, from: date)
     let e = calendar.component(Calendar.Component.minute, from: date)
-    let f = calendar.component(Calendar.Component.second, from: date)
+    let f = calendar.component(Calendar.Component.weekday, from: date)
     let datetime = dateTime(year: a, month: b, day: c, hour: d, minute: e, second: f)
     return datetime
 }
 
-dateTimeExtractive(date: date2!).year
+dateTimeExtractive(date: date2!)
 
 
 

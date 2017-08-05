@@ -17,8 +17,8 @@ class HandleCoreData: NSObject {
     
     struct OneThing {
         var name:String
-        var starttime:String
-        var endtime:String
+        var starttime:NSDate
+        var endtime:NSDate
         var dailyOrnot:Bool
         var remark = ""
     }
@@ -86,6 +86,13 @@ class HandleCoreData: NSObject {
             let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
             num = fetchedObjects.count
             //遍历查询的结果
+            //            for info:Things in fetchedObjects{
+            //
+            //                print("userID = \(info.name)")
+            //                print("userEmail = \(info.startTime)")
+            //                print("userPwd = \(info.endTime)")
+            //                print("+++++++++++++++++++++++++")
+            //            }
         }catch {
             let nserror = error as NSError
             fatalError("查询错误： \(nserror), \(nserror.userInfo)")
@@ -104,7 +111,7 @@ class HandleCoreData: NSObject {
     //     * 将查询出来的数据进行修改,也即进行赋新值
     //     * 通过saveContext()保存修改后的实体对象
     
-    func updateData(id:Int,name:String,start:String,end:String,dailyOrNot:Bool){
+    func updateData(id:Int,name:String,start:NSDate,end:NSDate,dailyOrNot:Bool,remark:String){
         
         //获取数据上下文对象
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -135,6 +142,7 @@ class HandleCoreData: NSObject {
                 info.startTime = start
                 info.endTime = end
                 info.dailyOrnot = dailyOrNot
+                info.remark = remark
                 //重新保存
                 app.saveContext()
             }

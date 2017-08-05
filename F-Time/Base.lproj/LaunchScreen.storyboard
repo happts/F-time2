@@ -21,22 +21,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="欢迎页1" translatesAutoresizingMaskIntoConstraints="NO" id="AQZ-Dy-bP3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="欢迎页1" translatesAutoresizingMaskIntoConstraints="NO" id="e0f-Zi-tpe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="AQZ-Dy-bP3" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="31Q-hi-wJP"/>
-                            <constraint firstItem="AQZ-Dy-bP3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="S3T-ag-hIC"/>
-                            <constraint firstItem="AQZ-Dy-bP3" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="Xqq-iE-ffK"/>
-                            <constraint firstItem="AQZ-Dy-bP3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yD9-16-Pp6"/>
+                            <constraint firstItem="e0f-Zi-tpe" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="kvQ-LE-soI"/>
+                            <constraint firstItem="e0f-Zi-tpe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nrf-Fb-rdm"/>
+                            <constraint firstItem="e0f-Zi-tpe" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ucO-dP-b9f"/>
+                            <constraint firstItem="e0f-Zi-tpe" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="xqK-iR-pgn"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="380"/>
+            <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
     <resources>
