@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class ThirdTableViewController: UITableViewController ,NSFetchedResultsControllerDelegate{
     
@@ -24,6 +25,25 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
         tableView.rowHeight = UITableViewAutomaticDimension
         
         fetchAllData2()
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { (success, error) in
+            if success {
+                print("success")
+            } else {
+                print("error")
+            }
+        }
+        let content = UNMutableNotificationContent()
+        content.title = ""
+        content.subtitle = ""
+        content.body = "body triggered"
+        
+        //        let trigger2 = UNCalendarNotificationTrigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification.id.01", content: content, trigger: trigger)
+        
+        // 4
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 //        things = getThings()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -72,8 +92,8 @@ class ThirdTableViewController: UITableViewController ,NSFetchedResultsControlle
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath) as! ThirdTableViewCell
-        
-        cell.thingLabel.text = things[indexPath.row].name
+        let str = things[indexPath.row].name! + "\n" + String(things[indexPath.row].thingID)
+        cell.thingLabel.text = str
         // Configure the cell...
 
         return cell

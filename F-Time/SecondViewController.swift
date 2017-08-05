@@ -17,6 +17,79 @@ class SecondViewController: UIViewController,NSFetchedResultsControllerDelegate 
     
     var things:[Things]!
     
+
+    // MARK: 系统
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fetchAllData2()
+        addView()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        let today = datetoday()
+        
+        todayNum.text = String(thingscalculate(day: today))
+        for view in self.view.subviews{
+            if view.tag >= 1{
+                view.removeFromSuperview()
+            }
+        }
+        addView()
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        //数据源变化时同步到数组
+        if let object = controller.fetchedObjects{
+            things = object as! [Things]
+        }
+    }
+    func fetchAllData2(){
+        let request:NSFetchRequest<Things> = Things.fetchRequest()
+        let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
+        request.sortDescriptors = [sd]
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //初始化
+        fc = NSFetchedResultsController(fetchRequest: request , managedObjectContext: context, sectionNameKeyPath:  nil, cacheName: nil  )
+        fc.delegate = self
+        
+        do {
+            try fc.performFetch()
+            if let objects = fc.fetchedObjects{
+                things = objects
+            }
+            
+        } catch  {
+            print(error)
+        }
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
     func thingscalculate (day: Int) -> Int {
         
         var j = 0
@@ -29,7 +102,7 @@ class SecondViewController: UIViewController,NSFetchedResultsControllerDelegate 
             let b = StringDateTransfer(dateStr: i.endTime!)
             c = dateTimeExtractive(date: a).day
             d = dateTimeExtractive(date: b).day
-
+            
             if (c <= day) && (d >= day) {
                 j += 1
             }
@@ -104,111 +177,7 @@ class SecondViewController: UIViewController,NSFetchedResultsControllerDelegate 
         self.view.addSubview(view5)
         self.view.addSubview(view6)
         self.view.addSubview(view7)
-
-    }
-    // MARK: 系统
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-//        things = getThings()
-        fetchAllData2()
-        addView()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-    }
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        let today = datetoday()
-        
-        todayNum.text = String(thingscalculate(day: today))
-        for view in self.view.subviews{
-            if view.tag >= 1{
-                view.removeFromSuperview()
-            }
-        }
-        addView()
-        
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        //数据源变化时同步到数组
-        if let object = controller.fetchedObjects{
-            things = object as! [Things]
-        }
-    }
-    func fetchAllData2(){
-        let request:NSFetchRequest<Things> = Things.fetchRequest()
-        let sd = NSSortDescriptor(key:"name",ascending: false) //排序规则
-        request.sortDescriptors = [sd]
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        //初始化
-        fc = NSFetchedResultsController(fetchRequest: request , managedObjectContext: context, sectionNameKeyPath:  nil, cacheName: nil  )
-        fc.delegate = self
-        
-        do {
-            try fc.performFetch()
-            if let objects = fc.fetchedObjects{
-                things = objects
-            }
-            
-        } catch  {
-            print(error)
-        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func getThings( ) -> [Things] {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        
-        //声明数据的请求
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
-        //        fetchRequest.fetchLimit = 10  //限制查询结果的数量
-        fetchRequest.fetchOffset = 0  //查询的偏移量
-        
-        //声明一个实体结构
-        let EntityName = "Things"
-        let entity:NSEntityDescription? = NSEntityDescription.entity(forEntityName: EntityName, in: context)
-        fetchRequest.entity = entity
-        
-        let things:[Things]
-        
-        //设置查询条件
-        //        ?let predicate = NSPredicate.init(format: "userID = '2'", "")
-        //        fetchRequest.predicate = predicate
-        
-        //查询操作
-        do{
-            let fetchedObjects = try context.fetch(fetchRequest) as! [Things]
-            things = fetchedObjects
-        }catch {
-            let nserror = error as NSError
-            fatalError("查询错误： \(nserror), \(nserror.userInfo)")
-        }
-        return things
     }
     
     struct dateTime {

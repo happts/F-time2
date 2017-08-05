@@ -30,8 +30,9 @@ class DetailTableViewController: UITableViewController {
         let name = thingNameText.text!
         let start = StartDate.text!
         let end = endDate.text!
+        let dailyOrNot = self.dailyOrNot
         print(name,start,end)
-        operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end)
+        operate.updateData(id: Int(thing.thingID), name: name, start: start, end: end,dailyOrNot: dailyOrNot)
         dismiss(animated: true, completion: nil)
     }
     

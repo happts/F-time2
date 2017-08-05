@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -24,19 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().selectionIndicatorImage = UIImage(named: "select60")
         //select60
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (granted, error) in
-            if granted {
-                print("用户允许")
-            } else {
-                print("用户不允许")
-            }
-        }
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (granted, error) in
+//            if granted {
+//                print("用户允许")
+//            } else {
+//                print("用户不允许")
+//            }
+//        }
         //在模拟器中需要删除原APP 再运行
         let operate = HandleCoreData()
         let countID = UserDefaults.standard
-        if countID.integer(forKey: "ID")>0{
-            countID.set(operate.queryData(), forKey: "ID")
-        }
+        
+        countID.set(operate.queryData(), forKey: "ID")
         
         return true
     }
